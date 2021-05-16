@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Update post{% endblock %}
+{% block content %}
+
+<div class="container">
+    <h1>Update post</h1>
+        {{ err }}
+    <div class="payload">
+        <form method="POST">
+            {% csrf_token %}
+
+            {{ form.title }}
+            {{ form.description }}
+            {{ form.content }}
+
+
+            <br>
+            <button class="btn btn-lg btn-success">Subscribe</button>
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
