@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from celery.schedules import crontab
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -68,7 +69,24 @@ TEMPLATES = [
     },
 ]
 
+CELERY_BROKER_URL = 'redis://localhost:6379'
 
+
+CELERY_TIMEZONE = "Europe/Prague"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+
+CELERY_BEAT_SCHEDULE = {
+    'smth_slow_async': {
+        'task': 'main.tasks.notify_async_all',
+        'schedule': crontab(minute='0', hour='9', day_of_week='*')
+    },
+
+    'smth_async': {
+        'task': 'main.tasks.delete_old_logs',
+        'schedule': crontab(minute='0', hour='1', day_of_month='*/3')
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -121,8 +139,8 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-EMAIL_HOST_USER = 'some@gmail.com'
-EMAIL_HOST_PASSWORD = 'blablabla'
+EMAIL_HOST_USER = 'nooneons03@gmail.com'
+EMAIL_HOST_PASSWORD = '130520011q'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

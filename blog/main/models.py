@@ -46,17 +46,12 @@ class Post(models.Model):
         return self.title
 
 
-def clean_log(created):
-        pass
-
-
 class Logg(models.Model):
     utm = models.CharField("Utm logger", max_length=40, default="")
     created = models.DateTimeField(auto_now_add=True)
     time_execution = models.CharField("Time execution", max_length=40, default="")
     path = models.CharField("Path", max_length=40, default="")
     user_ip = models.CharField("IP", max_length=40)
-    clean_log(created)
 
 
 class Category(models.Model):

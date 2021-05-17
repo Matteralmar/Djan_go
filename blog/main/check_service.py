@@ -17,7 +17,7 @@ def subscribe_check(err, request):
         form = SubscriberForm()
     if subscribe_success:
         notify_async.delay(email_to)
-        return redirect('subs')
+
     context = {
         'form': form,
         'error': err,

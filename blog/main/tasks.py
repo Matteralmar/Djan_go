@@ -1,7 +1,10 @@
+import datetime
 
 from celery import shared_task
 
-from .models import Subscriber
+from django.utils import timezone
+
+from .models import Subscriber, Logg
 from .notify_service import email_send, email_send_all
 
 
@@ -18,3 +21,10 @@ def notify_async_all():
     print("---- tasks: smth_slow_async - START")
     email_send_all(all_emails)
     print("---- tasks: smth_slow_async - END")
+
+
+def delete_old_logs():
+    logs = Logg.objects.all()
+    for log in logs:
+        if log.created < timezone.now() - datetime.timedelta(days=3):
+            log.delete()

@@ -3,9 +3,9 @@ from random import random
 from django.core.management import BaseCommand
 from faker import Faker
 
-from .models import Book, Author
+from main.models import Book, Author
 
-from .models import Category
+from main.models import Category
 
 
 class Command(BaseCommand):

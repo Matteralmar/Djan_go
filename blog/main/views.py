@@ -1,9 +1,11 @@
+import datetime
 
 
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
 from django.urls import reverse
+from django.utils import timezone
 from faker import Faker
 
 from .check_service import subscribe_check
@@ -64,7 +66,6 @@ def subs(request):
 
 def subscription(request):
     err = "You are successfully subscribed"
-
     context = subscribe_check(err, request)
 
     return render(request, 'main/subscribe.html', context=context)
@@ -144,15 +145,6 @@ def book_all(request):
     return render(request, 'main/books.html', context=context)
 
 
-def book_all(request):
-    author = Author.objects.all()
-    context = {
-        'title': 'Authors',
-        'books': author,
-    }
-    return render(request, 'main/authors.html', context=context)
-
-
 def post_show_api(request, post_id):
     pst = post_find(post_id)
     data = {"post_id": pst}
@@ -163,4 +155,3 @@ def slow(request):
     print('----------Start')
     print('----------End')
     return JsonResponse(dict([("dd", 123)]), safe=False)
-
