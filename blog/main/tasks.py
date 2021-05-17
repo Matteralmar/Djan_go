@@ -18,9 +18,8 @@ def notify_async(email_to):
 @shared_task
 def notify_async_all():
     all_emails = Subscriber.objects.all().values('email_to')
-    print("---- tasks: smth_slow_async - START")
-    email_send_all(all_emails)
-    print("---- tasks: smth_slow_async - END")
+    for email in all_emails:
+        email_send_all(email)
 
 
 def delete_old_logs():
