@@ -25,14 +25,15 @@ def telegram_notify(email_to):
 def email_send_all(email_to):
     url = 'https://tproger.ru/wp-content/plugins/citation-widget/get-quote.php'
     res = requests.get(url)
-    html_page = res.content
-    soup = BeautifulSoup(html_page, 'html.parser')
-    text = soup.find_all(text=True)
     from django.core.mail import send_mail
-    send_mail(
-        'My Blog',
-        print(text),
-        'nooneons03@gmail.com',
-        [email_to],
-        fail_silently=False,
-    )
+    if res.status_code == 200:
+        html_page = res.content
+        soup = BeautifulSoup(html_page, 'html.parser')
+        text = soup.find_all(text=True)
+        send_mail(
+            'My Blog',
+            text,
+            'nooneons03@gmail.com',
+            [email_to],
+            fail_silently=False,
+        )
