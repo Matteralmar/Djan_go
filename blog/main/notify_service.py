@@ -35,16 +35,13 @@ def email_send_all(email_to):
     soup = BeautifulSoup(html_page, 'html.parser')
     text = soup.find_all(text=True)
     from django.core.mail import send_mail
-    send_mail(
-        'My Blog',
-        print(text),
-        'nooneons03@gmail.com',
-        [email_to],
-        fail_silently=False,
-    )
-    response = requests.get('http://127.0.0.1:8000/')
-    print(response.status_code)
-    if response.status_code == 200:
-        print('Success!')
-    elif response.status_code == 404:
-        print('Not Found.')
+    if res.status_code == 200:
+        send_mail(
+            'My Blog',
+            text,
+            'nooneons03@gmail.com',
+            [email_to],
+            fail_silently=False,
+        )
+    elif res.status_code == 404:
+        pass
