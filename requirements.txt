@@ -35,6 +35,6 @@ pip~=19.2.3
 SQLAlchemy~=1.4.6
 greenlet~=1.0.0
 Jinja2~=2.11.3
-numpy~=1.20.2
+numpy~=1.19.5
 setuptools~=41.2.0
 Werkzeug~=1.0.1

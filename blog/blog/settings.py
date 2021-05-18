@@ -84,7 +84,7 @@ CELERY_BEAT_SCHEDULE = {
 
     'smth_async': {
         'task': 'main.tasks.delete_old_logs',
-        'schedule': crontab(minute='0', hour='1', day_of_month='*/3')
+        'schedule': crontab(minute='0', hour='1', day_of_month='*')
     }
 }
 
