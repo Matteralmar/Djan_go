@@ -16,12 +16,6 @@ def email_send(email_to):
         [email_to],
         fail_silently=False,
     )
-    response = requests.get('http://127.0.0.1:8000/')
-    print(response.status_code)
-    if response.status_code == 200:
-        print('Success!')
-    elif response.status_code == 404:
-        print('Not Found.')
 
 
 def telegram_notify(email_to):
