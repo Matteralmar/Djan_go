@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+
+{% load static %}
+<div class="container">
+    <h1>{{title}}</h1>
+    <div class="payload">
+        <span class="grey summary">{{ pst.title}}</span>
+        <div>
+            {{ pst.content }}
+        </div>
+        <div class="update_link">
+            <a href="{% url 'post_update' post_id=pst.id %}">Edit</a>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            {{ cmform.comment }}
+
+
+            <br>
+            <button class="btn btn-lg btn-success">Publish</button>
+        </form>
+        <ul>
+            {% for content in contents %}
+            <h4>{{ content.comment }}</h4>
+
+            <hr>
+            {% endfor %}
+        </ul>
+    </div>
+
+</div>
+
+{% endblock %}
