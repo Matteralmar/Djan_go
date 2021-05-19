@@ -55,12 +55,12 @@ class Logg(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField("Name", max_length=100, null=True, blank=True)
+    name = models.CharField("Category name", max_length=250)
 
 
 class Book(models.Model):
     title = models.CharField("Name", max_length=250)
-    author = models.ForeignKey(Author, models.CASCADE)
-    category = models.ForeignKey(Category, models.CASCADE)
+    author = models.ForeignKey(Author, models.CASCADE, null=True, related_name='books')
+    category = models.ForeignKey(Category, models.CASCADE, null=True, related_name='books')
 
 

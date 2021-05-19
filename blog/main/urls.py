@@ -12,6 +12,7 @@ urlpatterns = [
     path('post/update/<int:post_id>', views.post_update, name='post_update'),
     path('subscription', views.subscription, name='subscription'),
     path('authors', views.authors, name='authors'),
+    path('categories', views.categories, name='categories'),
     path('authors/generate', views.authors_generate, name='authors_generate'),
     path('api/posts', views.api_posts, name='api_posts'),
     path('api/subscribe', views.api_subscribe, name='api_subscribe'),
