@@ -12,7 +12,6 @@ urlpatterns = [
     path('post/update/<int:post_id>', views.post_update, name='post_update'),
     path('subscription', views.subscription, name='subscription'),
     path('authors', views.authors, name='authors'),
-    path('categories', views.categories, name='categories'),
     path('authors/generate', views.authors_generate, name='authors_generate'),
     path('posts/list', views.Posts_isView.as_view(), name='list'),
     path('api/posts', views.api_posts, name='api_posts'),

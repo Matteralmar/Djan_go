@@ -1,4 +1,4 @@
-import random
+from random import random
 
 from django.core.management import BaseCommand
 from faker import Faker
@@ -12,13 +12,11 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         fake = Faker()
         for _ in range(10):
-            Author(name=fake.name(), email=fake.email(), age=random.randint(1, 100)).save()
+            Author(name=fake.name(), email=fake.email(), age=100).save()
 
-        categories = ['Adventure', 'Detective', 'Mystery']
-        for category in categories:
-            Category(name=category).save()
+        for a in range(10):
+            Category(name=fake.name())
 
-        for i in range(20):
+        for i in range(10):
             author = Author.objects.order_by('?').last()
-            category = Category.objects.order_by('?').first()
-            Book(title=f'Title {i}', author=author, category=category).save()
+            Book(title=f'Title {i}', author=author).save()

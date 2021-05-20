@@ -10,7 +10,11 @@ from faker import Faker
 
 from .check_service import subscribe_check
 from .forms import PostForm, CommentForm
+<<<<<<< HEAD
 from .models import Author, Post, Subscriber, Comment, Book, Category, ContactUs
+=======
+from .models import Author, Post, Subscriber, Comment, Book
+>>>>>>> parent of a97b196... commit HW12
 from .notify_service import notify
 from .post_service import post_find
 from .subscribe_service import subscribe
@@ -31,20 +35,7 @@ def posts(request):
 
 def authors(request):
     authors = Author.objects.all()
-    context = {
-        "title": 'Authors',
-        "authors": authors,
-    }
-    return render(request, 'main/authors.html', context)
-
-
-def categories(request):
-    categories = Category.objects.all()
-    context = {
-        "title": 'Categories',
-        "categories": categories,
-    }
-    return render(request, 'main/categories.html', context)
+    return render(request, 'main/authors.html', {"title": "Authors", "authors": authors})
 
 
 def authors_generate(request):
@@ -152,7 +143,7 @@ def post_show(request, post_id):
 def book_all(request):
     books = Book.objects.all()
     context = {
-        'title': 'Books',
+        'title': 'Authors',
         'books': books,
     }
     return render(request, 'main/books.html', context=context)
