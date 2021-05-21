@@ -64,8 +64,3 @@ class Book(models.Model):
     category = models.ForeignKey(Category, models.CASCADE, null=True, related_name='books')
 
 
-class ContactUs(models.Model):
-    email = models.EmailField()
-    subject = models.CharField(max_length=120)
-    message = models.TextField()
-

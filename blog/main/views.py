@@ -1,16 +1,16 @@
 import datetime
 
+
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
 from django.urls import reverse
 from django.utils import timezone
-from django.views.generic import ListView, CreateView
 from faker import Faker
 
 from .check_service import subscribe_check
 from .forms import PostForm, CommentForm
-from .models import Author, Post, Subscriber, Comment, Book, Category, ContactUs
+from .models import Author, Post, Subscriber, Comment, Book, Category
 from .notify_service import notify
 from .post_service import post_find
 from .subscribe_service import subscribe
@@ -168,13 +168,3 @@ def slow(request):
     print('----------Start')
     print('----------End')
     return JsonResponse(dict([("dd", 123)]), safe=False)
-
-
-class Posts_isView(ListView):
-    queryset = Post.objects.all()
-    template_name = 'main/post_list.html'
-
-
-class ContactUs_View(CreateView):
-    model = ContactUs
-    fields = ('email', 'subject', 'message')
