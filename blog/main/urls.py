@@ -22,5 +22,6 @@ urlpatterns = [
     path('api/subscribers/all', views.api_subscribers_all, name='api_subscribers_all'),
     path('api/post/<int:post_id>', views.post_show_api, name='post_show_api'),
     path('slow', views.slow, name='slow'),
+    path('posts/list', views.Posts_isView.as_view(), name='list'),
 
 ]
