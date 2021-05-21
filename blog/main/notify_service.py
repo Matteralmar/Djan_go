@@ -21,7 +21,8 @@ def email_send(email_to):
 def telegram_notify(email_to):
     pass
 
-# def email_send_all(email_to):
+def email_send_all(email_to):
+    pass
 # url = 'https://tproger.ru/wp-content/plugins/citation-widget/get-quote.php'
 # res = requests.get(url)
 # from django.core.mail import send_mail
