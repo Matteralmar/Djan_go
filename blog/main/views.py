@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from django.urls import reverse
 from django.utils import timezone
+from django.views.generic import ListView
 from faker import Faker
 
 from .check_service import subscribe_check
@@ -168,3 +169,8 @@ def slow(request):
     print('----------Start')
     print('----------End')
     return JsonResponse(dict([("dd", 123)]), safe=False)
+
+
+class Posts_isView(ListView):
+    queryset = Post.objects.all()
+    template_name = 'main/post_list.html'

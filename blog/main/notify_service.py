@@ -21,6 +21,7 @@ def email_send(email_to):
 def telegram_notify(email_to):
     pass
 
+
 def email_send_all(email_to):
     pass
 # url = 'https://tproger.ru/wp-content/plugins/citation-widget/get-quote.php'
