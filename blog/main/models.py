@@ -1,15 +1,13 @@
-
 from django.db import models
 
+
 # Create your models here.
-
-
 class Author(models.Model):
-
     class Meta:
         db_table = 'tbl_user'
         verbose_name = 'Author'
         verbose_name_plural = 'Authors'
+
     name = models.CharField("Author's name", max_length=100)
     email = models.CharField("Author's email", max_length=50)
     age = models.IntegerField(default=0)
@@ -36,6 +34,7 @@ class Post(models.Model):
         db_table = 'tbl_posts'
         verbose_name = "User's post"
         verbose_name_plural = "User's posts"
+
     title = models.CharField("User's name", max_length=40)
     description = models.CharField("User's email", max_length=60)
     comments = models.CharField("User's comment", max_length=150, default="")
@@ -64,3 +63,7 @@ class Book(models.Model):
     category = models.ForeignKey(Category, models.CASCADE, null=True, related_name='books')
 
 
+class ContactUs(models.Model):
+    email = models.EmailField()
+    subject = models.CharField(max_length=120)
+    message = models.TextField()

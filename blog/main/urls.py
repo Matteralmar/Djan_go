@@ -23,5 +23,5 @@ urlpatterns = [
     path('api/post/<int:post_id>', views.post_show_api, name='post_show_api'),
     path('slow', views.slow, name='slow'),
     path('posts/list', views.Posts_isView.as_view(), name='list'),
-
+    path('contact-us/create/', views.ContactUs_View.as_view(), name='contact_us_create'),
 ]
