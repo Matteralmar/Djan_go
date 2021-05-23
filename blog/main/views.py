@@ -1,3 +1,4 @@
+
 import io
 import mimetypes
 import pandas as pd
@@ -5,16 +6,31 @@ import requests
 import xlrd
 import xlsxwriter as xlsxwriter
 from bs4 import BeautifulSoup
+
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
+import datetime
+
+
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
 from django.urls import reverse
+
+
+from django.utils import timezone
+
+
 from django.views.generic import ListView, CreateView
+
+
 from faker import Faker
 
 from .check_service import subscribe_check
 from .forms import PostForm, CommentForm
+
 from .models import Author, Post, Subscriber, Comment, Book, Category, ContactUs
+
+
 from .notify_service import notify
 from .post_service import post_find
 from .soup_service import soup_service
@@ -197,6 +213,7 @@ def slow(request):
 
 class Posts_isView(ListView):
     queryset = Post.objects.all()
+
     template_name = 'main/post_list.html'
 
 
@@ -205,5 +222,7 @@ class ContactUs_View(CreateView):
     fields = ('email', 'subject', 'message')
 
 
+
 def fill_posts(request):
     print("I am here")
+
