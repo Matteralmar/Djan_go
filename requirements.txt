@@ -42,3 +42,13 @@ wcwidth==0.2.5
 webencodings==0.5.1
 xlrd==2.0.1
 XlsxWriter==1.4.3
+
+pandas~=1.2.4
+pip~=19.2.3
+SQLAlchemy~=1.4.6
+iso8601~=0.1.14
+greenlet~=1.0.0
+Jinja2~=2.11.3
+numpy~=1.19.5
+setuptools~=41.2.0
+Werkzeug~=1.0.1
