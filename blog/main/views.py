@@ -1,8 +1,13 @@
 
+import io
+import mimetypes
+import pandas as pd
 import requests
+import xlrd
 import xlsxwriter as xlsxwriter
 from bs4 import BeautifulSoup
 
+from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 import datetime
 
 
@@ -47,7 +52,13 @@ def index(request):
         worksheet.write(rows, col, name)
         rows += 1
     workbook.close()
-    return render(request, 'main/index.html')
+    fl_path = '/mnt/c/Users/user/PycharmProjects/Djan_go/Titles.xlsx'
+    filename = 'Titles.xlsx'
+    mime_type, _ = mimetypes.guess_type(fl_path)
+    FilePointer = open(fl_path, "r", encoding='Latin-1')
+    response = HttpResponse(FilePointer, content_type=mime_type)
+    response['Content-Disposition'] = "attachment; filename=%s" % filename
+    return response
 
 
 def about(request):
@@ -214,5 +225,4 @@ class ContactUs_View(CreateView):
 
 def fill_posts(request):
     print("I am here")
-
 
