@@ -18,4 +18,5 @@ def soup_service(links, soup, titles):
         titles.append(article_t)
         article_title.text.strip()
         article_content = soup.find("div", {"class": "content"})
+        print(article_content)
     print(titles)
