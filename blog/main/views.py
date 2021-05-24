@@ -52,6 +52,7 @@ def index(request):
         worksheet.write(rows, col, name)
         rows += 1
     workbook.close()
+
     fl_path = '/mnt/c/Users/user/PycharmProjects/Djan_go/Titles.xlsx'
     filename = 'Titles.xlsx'
     mime_type, _ = mimetypes.guess_type(fl_path)
