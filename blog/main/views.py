@@ -51,7 +51,7 @@ def about(request):
 
 def posts(request):
     posts = Post.objects.all()
-    return render(request, 'main/posts.html', {"title": "Posts", "posts": posts})
+    return render(request, 'main/posts.html')
 
 
 def authors(request):
