@@ -3,10 +3,11 @@ from django.views.decorators import cache
 
 from . import views
 
+
 urlpatterns = [
     path('', views.index, name='main'),
     path('about', views.about, name='about'),
-    path('posts', cache.cache_page(60 * 2)(views.posts), name='posts'),
+    path('posts/', cache.cache_page(60 * 2)(views.posts), name='posts'),
     path('subs', views.subs, name='subs'),
     path('posts/create', views.posts_create, name='posts_create'),
     path('post/<int:post_id>', views.post_show, name='post_show'),
