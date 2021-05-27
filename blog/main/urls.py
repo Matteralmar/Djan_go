@@ -3,7 +3,6 @@ from django.views.decorators import cache
 
 from . import views
 
-
 urlpatterns = [
     path('', views.index, name='main'),
     path('about', views.about, name='about'),

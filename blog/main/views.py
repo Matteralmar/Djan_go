@@ -42,7 +42,7 @@ def index(request):
     FilePointer = open(fl_path, "r", encoding='Latin-1')
     response = HttpResponse(FilePointer, content_type=mime_type)
     response['Content-Disposition'] = "attachment; filename=%s" % filename
-    return response
+    return render(request, 'main/base.html')
 
 
 def about(request):
@@ -51,11 +51,24 @@ def about(request):
 
 def posts(request):
     posts = Post.objects.all()
-    return render(request, 'main/posts.html')
+    for post in posts:
+        post_id = post.id
+        obj = get_object_or_404(Post, id=post_id)
+        if request.method == "POST":
+            obj.delete()
+    context = {
+        'posts': posts
+    }
+    return render(request, 'main/posts.html', context=context)
 
 
 def authors(request):
     authors = Author.objects.all()
+    for author in authors:
+        author_id = author.id
+        obj = get_object_or_404(Post, id=author_id)
+        if request.method == "POST":
+            obj.delete()
     context = {
         "title": 'Authors',
         "authors": authors,

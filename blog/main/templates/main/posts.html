@@ -9,14 +9,19 @@
     <div class="payload">
         <ul>
             {% for post in posts %}
+
             <h4>{{ post.title }}</h4>
             <li class="row">
                 {{ post.content }}
             </li>
-            <hr>
+            {% if request.user.is_authenticated %}
+            <form method="POST">
+                {% csrf_token %}
+            <input type="submit" value="Delete post"/>
+            </form>
+            {% endif %}
             {% endfor %}
         </ul>
-
     </div>
 
 </div>
