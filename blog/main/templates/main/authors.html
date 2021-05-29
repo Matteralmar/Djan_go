@@ -21,6 +21,7 @@
                 <td>{{ author.id }}</td>
                 <td>{{ author.name }}</td>
                 <td>{{ author.books.count }}</td>
+                {% if request.user.is_authenticated %}<td><form method="POST"><input type="submit" value="Delete author"/></form></td>{% endif %}
             </tr>
             {% endfor %}
             </tbody>
