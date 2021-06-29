@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  back:
+    build: .
+    container_name: blog-backend
+    tty: true
+    stdin_open: true
+    restart: always
+    ports:
+    - "8001:8111"
+    volumes:
+      - ./:/srv/project
+    depends_on:
+      - memcached
+
+  memcached:
+    image: memcached:1.6.9
+    container_name: blog-memcached
+    tty: true
+    stdin_open: true
+    restart: always
+

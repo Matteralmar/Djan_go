@@ -15,3 +15,13 @@ collect-static:
 	$(MANAGE) collectstatic
 gunicorn-sock:
 	gunicorn -w 4 -b unix:/tmp/gunicorn.sock --chdir /mnt/c/Users/user/PycharmProjects/Djan_go/blog blog.wsgi --timeout 30 --log-level debug --max-requests 10000
+
+
+docker-build:
+	docker build -t ddd:v1 .
+
+docker-run:
+	docker run -rm -t -d -p 8001:8111 --name my_app ddd:v1
+
+demo-stop:
+	docker container stop my_app
