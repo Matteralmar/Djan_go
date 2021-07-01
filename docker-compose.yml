@@ -1,18 +1,31 @@
 version: "3.8"
 
 services:
+  nginx:
+    image: nginx:1.20
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - back
+
+
   back:
-    build: .
+    build: ..
     container_name: blog-backend
+    # command: python ./blog/manage.py runserver 0.0.0.0:8000
+    command: make $(RUN_COMMAND)
     tty: true
     stdin_open: true
     restart: always
     ports:
-    - "8001:8111"
+    - "8001:8000"
     volumes:
       - ./:/srv/project
     depends_on:
       - memcached
+      - rabbitmq
 
   memcached:
     image: memcached:1.6.9
@@ -21,3 +34,38 @@ services:
     stdin_open: true
     restart: always
 
+
+  rabbitmq:
+    image: rabbitmq:3.8-rc-management
+    container_name: rabbitmq
+    tty: true
+    stdin_open: true
+    restart: always
+    env_file: ../.env
+    ports:
+      - "15672:15672"
+
+
+
+  celery:
+    build: ..
+    container_name: celery
+    command: make celery-run
+    restart: always
+    env_file: ../.env
+    depends_on:
+      -rabbitmq
+    volumes:
+      - ./:/srv/project
+
+
+  celerybeat:
+    build: ..
+    container_name: celerybeat
+    command: make celerybeat-run
+    restart: always
+    env_file: ../.env
+    depends_on:
+      -rabbitmq
+    volumes:
+      - ./:/srv/project
