@@ -1,6 +1,7 @@
 MANAGE = python blog/manage.py
 PROJECT_DIR=$(shell pwd)
 WSGI_PORT=8081
+RUN_COMMAND=gunicorn-run
 
 
 
