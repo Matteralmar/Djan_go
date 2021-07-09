@@ -1,7 +1,13 @@
+from django.conf.urls.static import static
 from django.urls import path
 from django.views.decorators import cache
+from rest_framework.routers import DefaultRouter
 
+from blog import settings
 from . import views
+
+router = DefaultRouter()
+router.register(prefix='api/v1/posts', viewset=views.PostAPIViewSet, basename='rate')
 
 urlpatterns = [
     path('', views.index, name='main'),
@@ -25,4 +31,7 @@ urlpatterns = [
     path('slow', views.slow, name='slow'),
     path('posts/list', views.Posts_isView.as_view(), name='list'),
     path('contact-us/create/', views.ContactUs_View.as_view(), name='contact_us_create'),
-]
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += router.urls

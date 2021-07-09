@@ -220,3 +220,17 @@ class ContactUs_View(CreateView):
 
 def fill_posts(request):
     print("I am here")
+
+
+from rest_framework import viewsets, serializers
+
+
+class PostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = {'id', 'title', 'description', 'comments', 'content', 'created'}
+
+
+class PostAPIViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all().order_by('-id')
+    serializer_class = PostSerializer

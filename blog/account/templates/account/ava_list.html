@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+{% for ava in object_list %}
+<div>
+    {{ ava.file_path }} <br/>
+    {{ ava.file_path.url }}
+</div>
+<hr>
+{% endfor %}
+
+{% endblock %}
