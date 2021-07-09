@@ -17,6 +17,8 @@
         <li><a href="{% url 'authors' %}">Authors</a></li>
         <li><a href="{% url 'authors_generate' %}">Authors generate</a></li>
         <li><a href="{% url 'subs' %}">Subscribers</a></li>
+        <li><a href="{% url 'account:my_profile_ava_create' %}">Avatars</a></li>
+        <li><a href="{% url 'account:my_profile_ava_list' %}">List of avatars</a></li>
         {% if request.user.is_authenticated %}<li><li><a href="{% url 'account:my_profile' %}">Account</a></li>{% endif %}
     </ul>
 </nav>

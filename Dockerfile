@@ -4,10 +4,10 @@ RUN uname -a
 RUN apt update && apt install -y --no-install-recommends python-dev python-setuptools
 
 WORKDIR /srv/project
-COPY ../requirements.txt /tmp/requirements.txt
+COPY requirements.txt /tmp/requirements.txt
 RUN pip install -r requirements.txt
 
-COPY ../blog blog/
+COPY blog blog
 COPY commands/ commands/
 RUN cmod +rx -R commands
 COPY ../Makefile Makefile

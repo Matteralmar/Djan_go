@@ -58,3 +58,4 @@ greenlet~=1.0.0
 Jinja2~=2.11.3
 atomicwrites~=1.4.0
 Werkzeug~=1.0.1
+djangorestframework~=3.12.4
